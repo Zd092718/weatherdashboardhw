@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 class="header">Weather Dashboard</h1>
+    </header>
+    <form class= "d-flex flex-column align-items-start searchbar">
+        <div class="mb-3 ">
+          <label for="city" class="form-label">Search for a city:</label>
+          <input type="text" class="form-control" id="city" aria-describedby="citySearch">
+        </div>
+        <button type="submit" class="search btn-primary">Submit</button>
+      </form>
+      <br>
+      <section class="todaydisplay d-flex flex-wrap align-content-end col-lg-6 ">Today's Display:</section>
+      <section class="fiveday">Your Five-Day Forecast</section>
+    <!-- Script links -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

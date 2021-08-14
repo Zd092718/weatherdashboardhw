@@ -1,0 +1,16 @@
+.header {
+    text-align: center;
+    background-color: blue;
+    padding: 30px;
+}
+
+
+.todaydisplay {
+    border: 5px solid black;
+}
+
+.fiveday {
+    border: 5px solid black;
+}
+
+
