@@ -29,11 +29,13 @@ function findWeather(city){
         .then(weatherData => {
             console.log(weatherData.daily)
             for (let i = 0; i < weatherData.daily.length; i++) {
-                const time = weatherData.daily[i];
-                console.log(time)
+                const getDay = weatherData.daily[i];
                 let date = new Date();
-                const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
-                console.log()
+                const month = date.getMonth();
+                const day = date.getDate();
+                const year = date.getFullYear();
+                let ndate = new Date(year, month, day + i);
+                console.log(getDay)
             }
         })
     })
