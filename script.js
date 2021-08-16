@@ -3,6 +3,7 @@ let searchbarEl = $('.searchbar');
 let searchInputEl = $('#city');
 let searchButtonEl = $('.search');
 let todayDisplayEl = $('.todaydisplay');
+let cardEl = $('.card')
 let day1El = $('.day1');
 let day2El = $('.day2');
 let day3El = $('.day3');
@@ -13,8 +14,10 @@ const month = date.getMonth();
 const day = date.getDate();
 const year = date.getFullYear();
 let today = new Date(year, month, day);
-function findWeather(city){
-    let cityFind = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+function findWeather(city, state){
+
+    let cityFind = `https://api.openweathermap.org/data/2.5/weather?q=${city},US-${state}&appid=${apiKey}`
+    // let cityFind = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
 
     fetch(cityFind)
     .then(response => {
@@ -41,6 +44,8 @@ function findWeather(city){
         .then(weatherData => {
             console.log(weatherData.daily)
             //today element
+            todayDisplayEl.text("");
+
             var date1 = document.createElement('h3');
             date1.textContent = `${month + 1}/${day}/${year}`;
             todayDisplayEl.append(date1);
@@ -63,6 +68,8 @@ function findWeather(city){
             var uvi = document.createElement('li');
             uvi.textContent = `UV Index: ${weatherData.daily[0].uvi}`
             detailList1.append(uvi)
+
+            clearDivs();
 
             for (let i = 1; i < 6; i++) {
                 const loopDays = weatherData.daily[i]
@@ -99,10 +106,30 @@ function findWeather(city){
                 wind.textContent = `Wind Speed: ${loopDays.wind_speed} MPH`
                 detailList.append(wind);
             }
-            
         })
     })
+}
 
+//function to clean previous search results
+function clearDivs(){
+    day1El.text('');
+    day2El.text('');
+    day3El.text('');
+    day4El.text('');
+    day5El.text('');
+}
+
+var historyData = JSON.parse(localStorage.getItem('history') || '[]');
+console.log(historyData)
+for (let i = 0; i < historyData.length; i++) {  
+    const historyItem = historyData[i];
+    var histButton = document.createElement('button');
+    histButton.className = "history-buttons"
+    histButton.textContent = historyItem;
+    $('.history').append(histButton);
+    histButton.addEventListener('click', function(){
+        findWeather(historyItem)
+    })
 }
 
 function handleFormSubmit(event){
@@ -111,9 +138,11 @@ function handleFormSubmit(event){
     console.log(cityVal)
     findWeather(cityVal);
     var history = JSON.parse(localStorage.getItem('history') || '[]');
-    history.push(cityVal)
+    if(history.indexOf(cityVal) === -1){
+        history.push(cityVal);
+    }
     localStorage.setItem('history', JSON.stringify(history));
-
+    
 }
 
 searchButtonEl.on('click', handleFormSubmit)
