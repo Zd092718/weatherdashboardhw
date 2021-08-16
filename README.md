@@ -30,7 +30,7 @@ To see the code for the site:
 ### Preview Image
 <br>
 
-![screenshot of home page](./assets/screenshot.png)
+![screenshot of home page](./photos/screenshot.png)
 
 
 

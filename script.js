@@ -47,7 +47,7 @@ function findWeather(city, state){
             todayDisplayEl.text("");
 
             var date1 = document.createElement('h3');
-            date1.textContent = `${month + 1}/${day}/${year}`;
+            date1.textContent = `${searchInputEl.val()} ${month + 1}/${day}/${year}`;
             todayDisplayEl.append(date1);
 
             var detailList1 = document.createElement('ul');
@@ -123,6 +123,7 @@ var historyData = JSON.parse(localStorage.getItem('history') || '[]');
 console.log(historyData)
 for (let i = 0; i < historyData.length; i++) {  
     const historyItem = historyData[i];
+    
     var histButton = document.createElement('button');
     histButton.className = "history-buttons"
     histButton.textContent = historyItem;
